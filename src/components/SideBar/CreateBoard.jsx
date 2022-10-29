@@ -30,6 +30,7 @@ function CreateBoard() {
         console.log("Board creation error: ", error);
       });
 
+      //fall back to this if axios fails
     // fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/board/`, {
     //   method: "POST",
     //   body: JSON.stringify(formData),

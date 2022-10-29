@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
 import CreateBoard from "./CreateBoard";
+import AllBoard from "./AllBoard"
 
 function SideBar() {
   const [show, setShow] = useState(false);
@@ -9,35 +10,37 @@ function SideBar() {
   const handleShow = () => setShow(true);
 
   const [isShown, setIsShown] = useState(false);
-  const handleClick = event => {
+  const handleClick = (event) => {
     // 👇️ toggle shown state for create form
-    setIsShown(current => !current);
-// setIsShown(true);
+    setIsShown((current) => !current);
+    // setIsShown(true);
   };
 
   return (
     <>
-      <Button ClassName = 'sidebar' variant="primary" onClick={handleShow}>
+      <Button ClassName="sidebar" variant="primary" onClick={handleShow}>
         Menu
       </Button>
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
+
           <Offcanvas.Title>Habi7s</Offcanvas.Title>
           <Button onClick={handleClick}>create new board</Button>
           {/* render create board component form when clicked */}
-          
+        
         </Offcanvas.Header>
-        {isShown && (
-        <CreateBoard/>
-        )}
+        
+        {isShown && <CreateBoard />}
+        
         <Offcanvas.Body>
-         here is where i shall render all the buttons to the boards
+          here is where i shall render all the buttons to the boards
+          <AllBoard />
         </Offcanvas.Body>
+      
       </Offcanvas>
     </>
   );
 }
 
-
-export default SideBar
+export default SideBar;
