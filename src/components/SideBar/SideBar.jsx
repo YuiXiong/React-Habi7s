@@ -10,17 +10,18 @@ function SideBar() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch
+      <Button ClassName = 'sidebar' variant="primary" onClick={handleShow}>
+        Menu
       </Button>
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>Habi7s</Offcanvas.Title>
+          <Button>create new board</Button>
+
         </Offcanvas.Header>
         <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
+         here is where i shall render all the buttons to the boards
         </Offcanvas.Body>
       </Offcanvas>
     </>
