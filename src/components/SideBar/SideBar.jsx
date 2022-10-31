@@ -13,17 +13,23 @@ function SideBar(props) {
   const handleClick = (event) => {
     // 👇️ toggle shown state for create form
     setIsShown((current) => !current);
-    // setIsShown(true);
   };
+
+  const handleBoardStateChange = (e) => {
+    props.setBoardState(e.target.value)
+ }
 
   // console.log("props.data@sidebar: ", props.data)
   const mapData= props.data.map((e) =>
-  <div>
-    <button id ={e._id}>
-      {e.name}
-    </button>
-  </div>
+    <div onClick ={handleBoardStateChange}> 
+      <button value={e._id} id ={e._id} >
+        {e.name}
+      </button>
+    </div>
   )
+
+
+
   return (
     <>
       <Button ClassName="sidebar" variant="primary" onClick={handleShow}>

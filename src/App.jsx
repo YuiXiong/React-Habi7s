@@ -9,14 +9,15 @@ import Container from "react-bootstrap/Container";
 import Col from 'react-bootstrap/Col';
 
 import SideBar from "./components/SideBar/SideBar";
-// import TodoComponent from "./components/Todo/MainComponent"
+import TodoComponent from "./components/Todo/MainComponent"
 
 function App() {
 
-  const [boardState, setBoardState] = useState([""])
+  const [boardData, setBoardData] = useState([""])
+  const[boardState, setBoardState] = useState("")
 
   useEffect(() => {
-    console.log("get board");
+    console.log("fetching boardData");
     const fetchApi = async () => {
       const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/board/`,
       {
@@ -27,20 +28,21 @@ function App() {
       }
     );    if (res.status === 200 || res.status === 201) {
       const data = await res.data;
-      console.log("data", data);
-      setBoardState(data);
+      console.log("BoardData Fetched", data);
+      setBoardData(data);
     }
   };
   fetchApi();
 }, []);
 
+console.log('boardState is now', boardState)
 
   return (
     <div className="App">
       <Container>
         <Row>
-        <Col xs={2}><SideBar data={boardState} /></Col>
-        {/* <Col> <TodoComponent /></Col> */}
+        <Col xs={2}><SideBar data={boardData} setBoardState={setBoardState}/></Col>
+        <Col> <TodoComponent boardState={boardState}/></Col>
         </Row>
       </Container>
     </div>
