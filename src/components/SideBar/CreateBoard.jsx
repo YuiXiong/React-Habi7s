@@ -29,6 +29,8 @@ function CreateBoard() {
       .catch(function (error) {
         console.log("Board creation error: ", error);
       });
+     //set state to objectID 
+
 
       //fall back to this if axios fails
     // fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/board/`, {
