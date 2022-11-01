@@ -1,21 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { DndContext } from "@dnd-kit/core";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
+// import Col from "react-bootstrap/Col";
 
 import { Draggable } from "./Draggable";
 import { Droppable } from "./Droppable";
 
-function MainComponent() {
+function MainComponent(props) {
   const [parent, setParent] = useState(null);
+  const [task, setTask] = useState(null);
+  const [board, setboard]=useState("")
+
+  let liftedObjectId = props.boardState
+  console.log('boardState in maincomponent', liftedObjectId)
+
+  useEffect(() => {
+    console.log("fetching taskData");
+    const fetchApi = async () => {
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/board/${liftedObjectId}/task`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // withCredentials: true,
+      }
+    );    
+    if (res.status === 200 || res.status === 201) {
+      const data = await res.data;
+      console.log("BoardData in maincomponent: ", data);
+      // setBoardData(data);
+    }
+  };
+  fetchApi();
+  }, [liftedObjectId]);
+
   const draggableMarkup = (
     <Draggable id="draggable">
       <button>drag</button>
     </Draggable>
   );
 
-  return (
+return (
     <DndContext onDragEnd={handleDragEnd}>
       <Container>
         <Row>

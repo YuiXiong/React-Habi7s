@@ -37,16 +37,21 @@ function SideBar(props) {
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
+        
           <Offcanvas.Title>Habi7s</Offcanvas.Title>
+         
           <Button onClick={handleClick}>create new board</Button>
           {/* render create board component form when clicked */}
+        
         </Offcanvas.Header>
 
         {isShown && <CreateBoard />}
 
         <Offcanvas.Body>
-          here is where i shall render all the buttons to the boards
+        
+          {/* here is where i shall render all the buttons to the boards */}
           <Container>{mapData}</Container>
+        
         </Offcanvas.Body>
       </Offcanvas>
     </>

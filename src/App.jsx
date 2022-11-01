@@ -14,8 +14,9 @@ import TodoComponent from "./components/Todo/MainComponent"
 function App() {
 
   const [boardData, setBoardData] = useState([""])
-  const[boardState, setBoardState] = useState("")
+  const [boardState, setBoardState] = useState("")
 
+  //fetch boards 
   useEffect(() => {
     console.log("fetching boardData");
     const fetchApi = async () => {
@@ -34,6 +35,26 @@ function App() {
   };
   fetchApi();
 }, []);
+
+// useEffect(() => {
+//   console.log("fetching taskData");
+//   const fetchTaskApi = async () => {
+//     const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/board/${boardState}/task`,
+//     {
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       // withCredentials: true,
+//     }
+//   );    
+//   if (res.status === 200 || res.status === 201) {
+//     const taskData = await res.data;
+//     console.log("BoardData in maincomponent: ", taskData);
+//     // setBoardData(data);
+//   }
+// };
+// fetchTaskApi();
+// }, []);
 
 console.log('boardState is now', boardState)
 
