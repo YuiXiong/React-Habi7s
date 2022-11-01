@@ -10,7 +10,7 @@ import { Droppable } from "./Droppable";
 
 function MainComponent(props) {
   const [parent, setParent] = useState(null);
-  const [task, setTask] = useState(null);
+  const [task, setTask] = useState("");
   const [board, setboard]=useState("")
 
   let liftedObjectId = props.boardState
@@ -30,17 +30,29 @@ function MainComponent(props) {
     if (res.status === 200 || res.status === 201) {
       const data = await res.data;
       console.log("BoardData in maincomponent: ", data);
-      // setBoardData(data);
+      setTask(data);
     }
   };
   fetchApi();
   }, [liftedObjectId]);
 
-  const draggableMarkup = (
-    <Draggable id="draggable">
-      <button>drag</button>
+  console.log("task.data is :", task.tasks[0].task)
+
+  const draggableMarkup = task.tasks.map((e) => (
+    <Draggable><button id={e._id}>
+        {e.task}
+      </button>
     </Draggable>
-  );
+  ));
+
+  // working stuff below
+  // const draggableMarkup = (
+  //   <Draggable id="draggable">
+  //     <button>drag</button>
+  //   </Draggable>
+  // );
+
+  
 
 return (
     <DndContext onDragEnd={handleDragEnd}>
