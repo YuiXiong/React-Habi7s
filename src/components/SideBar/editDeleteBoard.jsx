@@ -4,23 +4,24 @@ import Form from "react-bootstrap/Form";
 import "./CreateBoard.css";
 import axios from "axios";
 
-function editDeleteBoard() {
+function EditDeleteBoard(props) {
+    //for editing board Name
   const [editFormData, setEditFormData] = useState({
     name: "",
   });
 
   function handleInputChange(e) {
-    setFormData({
-      ...formData,
+    setEditFormData({
+      ...editFormData,
       [e.target.name]: e.target.value,
     });
   }
-
+  console.log("boardObjectIdForEdit is :", props.boardObjectIdForEdit)
   const handleFormSubmit = (event) => {
     event.preventDefault();
     console.log("Editformdata : ", editFormData);
-    axios.patch(`${process.env.REACT_APP_SERVER_URL}/api/v1/board/:boardidhere`,
-        formData
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/api/v1/board/${props.boardObjectIdForEdit}`,
+    editFormData
       )
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
@@ -30,8 +31,21 @@ function editDeleteBoard() {
         console.log("Board edit error: ", error);
       });
      //set state to objectID 
-
   };
+
+  //for handling delete board
+  const handleDelete = (event) => {
+    console.log("deleting board by objectID : ", props.boardObjectIdForEdit);
+    axios.delete(`${process.env.REACT_APP_SERVER_URL}/api/v1/board/${props.boardObjectIdForEdit}`,
+      )
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+        console.log("Board deleted Successfully");
+      }})
+      .catch(function (error) {
+        console.log("Board deletion error: ", error);
+      });
+    }
 
   return (
     <Form className="board">
@@ -56,8 +70,19 @@ function editDeleteBoard() {
       <Button className="board-button" variant="danger" type="cancel">
         Cancel
       </Button>
+
+      <div>
+      <Button
+        onClick={handleDelete}
+        className="board-button"
+        variant="danger"
+        type="submit"
+      >
+        Delete
+      </Button>
+      </div>
     </Form>
   );
 }
 
-export default editDeleteBoard;
+export default EditDeleteBoard;
