@@ -22,10 +22,10 @@ function SideBar(props) {
 
   // maping data from props to button
   const mapData = props.data.map((e) => (
-    <div onClick={handleBoardStateChange}>
-      <button value={e._id} id={e._id}>
+    <div className = " mt-2" onClick={handleBoardStateChange}>
+      <Button className="btn-success" role="button" aria-pressed="true" value={e._id} id={e._id}>
         {e.name}
-      </button>
+      </Button>
     </div>
   ));
 
