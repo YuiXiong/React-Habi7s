@@ -31,7 +31,7 @@ function SideBar(props) {
 
   return (
     <>
-      <Button ClassName="sidebar" variant="primary" onClick={handleShow}>
+      <Button className="sidebar" variant="primary" onClick={handleShow}>
         Menu
       </Button>
 

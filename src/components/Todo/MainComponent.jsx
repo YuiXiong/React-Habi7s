@@ -3,14 +3,13 @@ import axios from "axios";
 import { DndContext } from "@dnd-kit/core";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-// import Col from "react-bootstrap/Col";
 
 import { Draggable } from "./Draggable";
 import { Droppable } from "./Droppable";
 
 function MainComponent(props) {
   const [parent, setParent] = useState(null);
-  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState({});
   const [board, setboard]=useState("")
 
   let liftedObjectId = props.boardState
@@ -30,36 +29,25 @@ function MainComponent(props) {
     if (res.status === 200 || res.status === 201) {
       const data = await res.data;
       console.log("BoardData in maincomponent: ", data);
-      setTask(data);
+      setTasks(data);
     }
   };
   fetchApi();
   }, [liftedObjectId]);
 
-  console.log("task.data is :", task.tasks[0].task)
+  console.log("task state is:", tasks)
 
-  const draggableMarkup = task.tasks.map((e) => (
-    <Draggable><button id={e._id}>
-        {e.task}
-      </button>
-    </Draggable>
-  ));
-
-  // working stuff below
-  // const draggableMarkup = (
-  //   <Draggable id="draggable">
-  //     <button>drag</button>
-  //   </Draggable>
-  // );
-
+  const draggableMarkup = tasks?.tasks?.map((e) => (
+    <Draggable id="draggable">
+      <button>{e.task}</button>
+    </Draggable>));
   
 
-return (
+return ( liftedObjectId ?(
     <DndContext onDragEnd={handleDragEnd}>
       <Container>
         <Row>
-          {parent === null ? draggableMarkup : null}
-
+        {parent === null ? (<>{draggableMarkup}<h6>dragablemarkup</h6></>) : (<></>)}
           <Container className=" col-6 border pb-6">
             <Droppable key="urgentImportant" id="urgentImportant">
               {parent === "urgentImportant"
@@ -94,7 +82,7 @@ return (
         </Row>
       </Container>
     </DndContext>
-  );
+  ) : (<div>select a board first</div>));
 
   function handleDragEnd(event) {
     const { over } = event;
