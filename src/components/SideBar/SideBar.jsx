@@ -9,10 +9,10 @@ function SideBar(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [isShown, setIsShown] = useState(false);
-  const handleClick = (event) => {
+  const [isCreateShown, setIsCreateShown] = useState(false);
+  const handleCreateClick = (event) => {
     // 👇️ toggle shown state for create form
-    setIsShown((current) => !current);
+    setIsCreateShown((current) => !current);
   };
 
   //handle lifting of board state to app.jsx
@@ -26,6 +26,7 @@ function SideBar(props) {
       <Button className="btn-success" role="button" aria-pressed="true" value={e._id} id={e._id}>
         {e.name}
       </Button>
+      
     </div>
   ));
 
@@ -40,12 +41,12 @@ function SideBar(props) {
         
           <Offcanvas.Title>Habi7s</Offcanvas.Title>
          
-          <Button onClick={handleClick}>create new board</Button>
+          <Button onClick={handleCreateClick}>create new board</Button>
           {/* render create board component form when clicked */}
         
         </Offcanvas.Header>
 
-        {isShown && <CreateBoard />}
+        {isCreateShown && <CreateBoard />}
 
         <Offcanvas.Body>
         
