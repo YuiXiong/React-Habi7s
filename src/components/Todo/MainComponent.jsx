@@ -38,8 +38,8 @@ function MainComponent(props) {
   console.log("task state is:", tasks)
 
   const draggableMarkup = tasks?.tasks?.map((e) => (
-    <Draggable id="draggable">
-      <button>{e.task}</button>
+    <Draggable id={e._id}>
+      {e.task}
     </Draggable>));
   
 
