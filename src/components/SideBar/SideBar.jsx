@@ -19,8 +19,12 @@ function SideBar(props) {
 
   //state related to edit board
   const [isEditShown, setIsEditShown] = useState(false); 
+  const [currentOpenBoardId, setCurrentOpenBoardId ] = useState("");
   const handleEditClick = (event) => {
-    setIsEditShown((editCurrent) => !editCurrent);
+    console.log("event : ", event.target.id)
+
+    // setIsEditShown((editCurrent) => !editCurrent);
+    setCurrentOpenBoardId(event.target.id)
   };
   
   //handle lifting of board state to app.jsx
@@ -37,10 +41,10 @@ function SideBar(props) {
         id= {e._id}
       >
         {e.name}
-        <Button id={e._id} onClick={handleEditClick}>
+        <Button id={e._id} onClick={(event)=>handleEditClick(event)}>
           Edit/Del board
         </Button>
-        {isEditShown && <EditDeleteBoard boardObjectIdForEdit={e._id} />}
+        {currentOpenBoardId=== e._id && <EditDeleteBoard boardObjectIdForEdit={e._id} />}
       </Button>
     </div>
   ));
