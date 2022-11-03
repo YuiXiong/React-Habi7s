@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-habi7s/static/css/main.6567eefb.css",
+    "main.js": "/react-habi7s/static/js/main.5e7cc442.js",
+    "static/js/787.cae2bbf2.chunk.js": "/react-habi7s/static/js/787.cae2bbf2.chunk.js",
+    "index.html": "/react-habi7s/index.html",
+    "main.6567eefb.css.map": "/react-habi7s/static/css/main.6567eefb.css.map",
+    "main.5e7cc442.js.map": "/react-habi7s/static/js/main.5e7cc442.js.map",
+    "787.cae2bbf2.chunk.js.map": "/react-habi7s/static/js/787.cae2bbf2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6567eefb.css",
+    "static/js/main.5e7cc442.js"
+  ]
+}
