@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Container from "react-bootstrap/Container";
 import CreateBoard from "./CreateBoard";
-import EditDeleteBoard from "./EditDeleteBoard";
+import EditDeleteBoard from "./editDeleteBoard";
 
 function SideBar(props) {
   //toggling display of sidebar
